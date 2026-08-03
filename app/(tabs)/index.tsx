@@ -1,9 +1,9 @@
+import { myStyles } from "@/styles/main";
 import { Button } from "@react-navigation/elements";
 import {
   ActivityIndicator,
   Image,
   ScrollView,
-  StyleSheet,
   Text,
   TextInput,
   View,
@@ -31,7 +31,7 @@ export default function HomeScreen() {
           <ActivityIndicator size={"small"} />
           <View>
             <Image
-              source={require("../../assets/images/icon.png")}
+              source={require("@/assets/images/icon.png")}
               style={{ width: 300, height: 300 }}
               resizeMode="cover"
             />
@@ -49,23 +49,4 @@ export default function HomeScreen() {
   );
 }
 
-const myStyles = StyleSheet.create({
-  input: {
-    borderColor: "red",
-    borderWidth: 2,
-    padding: 10,
-    borderRadius: 15,
-    margin: 5,
-    color:'yellow'
-  
-  },
-  card: {
-    padding: 10,
-    margin: 10,
-    borderRadius: 15,
-    backgroundColor: "#001933",
-  },
-  text: {
-    color: '#ffffff'
-  }
-});
+
