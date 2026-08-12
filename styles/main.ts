@@ -18,4 +18,14 @@ export const myStyles = StyleSheet.create({
   text: {
     color: "#ffffff",
   },
+  label: {
+    color: "#ffffff",
+    marginBottom: 5,
+    marginLeft: 15,
+  },
+  button: {
+    color: "white",
+    backgroundColor:"blue",
+    margin: 10,
+  },
 });

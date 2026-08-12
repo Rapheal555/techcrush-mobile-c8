@@ -1,20 +1,28 @@
 import { myStyles } from "@/styles/main";
-import { TextInput } from "react-native";
+import { Text, TextInput, View } from "react-native";
 
 type SpecialInputProps = {
   placeholder?: string;
   placeholderTextColor?: string;
+  label?: string;
+  secureTextEntry?: boolean;
 };
 
 export const SpecialInput = ({
   placeholder = "Type here...",
   placeholderTextColor = "yellow",
+  label ,
+  secureTextEntry=false
 }: SpecialInputProps) => {
   return (
-    <TextInput
-      placeholderTextColor={placeholderTextColor}
-      style={myStyles.input}
-      placeholder={placeholder}
-    />
+    <View style={{ marginBottom: 10 }}>
+      <Text style={myStyles.label}>{label}</Text>
+      <TextInput
+        secureTextEntry={secureTextEntry}
+        placeholderTextColor={placeholderTextColor}
+        style={myStyles.input}
+        placeholder={placeholder}
+      />
+    </View>
   );
 };
