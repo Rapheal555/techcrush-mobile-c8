@@ -1,12 +1,20 @@
 import { SpecialInput } from "@/components/ui/special-input";
 import { myStyles } from "@/styles/main";
+import { Button } from "@react-navigation/elements";
 import { Text, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
 
 export default function Login() {
+  const router = useRouter();
+
+  const handleLogin = ()=>{
+    router.push("/(tabs)/profile")
+  }
+
   return (
     <SafeAreaProvider>
-      <SafeAreaView>
+      <SafeAreaView style={myStyles.container}>
         <View style={myStyles.card}>
           <SpecialInput
             label="Email"
@@ -18,11 +26,13 @@ export default function Login() {
             label="Password"
             placeholder="Enter Password"
           />
-
-          <Text style={myStyles.text}>This is Login</Text>
-          <Text style={myStyles.text}>This is Login</Text>
-          <Text style={myStyles.text}>This is Login</Text>
-          <Text style={myStyles.text}>This is Login</Text>
+          <Button
+            onPressIn={handleLogin}
+            color="#d604cf"
+            style={myStyles.button}
+          >
+            Login
+          </Button>
         </View>
       </SafeAreaView>
     </SafeAreaProvider>

@@ -1,6 +1,11 @@
 import {StyleSheet} from 'react-native'
 
 export const myStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   input: {
     borderColor: "green",
     borderWidth: 2,
@@ -13,7 +18,8 @@ export const myStyles = StyleSheet.create({
     padding: 10,
     margin: 10,
     borderRadius: 15,
-    backgroundColor: "#001933",
+    backgroundColor: "#d604cf",
+    width:"70%"
   },
   text: {
     color: "#ffffff",
@@ -24,8 +30,21 @@ export const myStyles = StyleSheet.create({
     marginLeft: 15,
   },
   button: {
-    color: "white",
-    backgroundColor:"blue",
+    backgroundColor: "white",
     margin: 10,
+  },
+  splash: {
+    backgroundColor: "#d604cf",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
+    width: "100%",
+  },
+  splashText: {
+    color: "white",
+    fontSize: 34,
+    fontWeight: "bold",
+    fontStyle: "italic",
   },
 });
