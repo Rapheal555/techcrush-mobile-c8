@@ -9,7 +9,7 @@ export default function Login() {
   const router = useRouter();
 
   const handleLogin = ()=>{
-    router.push("/(tabs)/profile")
+    router.replace("/(tabs)/profile")
   }
 
   return (
