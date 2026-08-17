@@ -6,13 +6,17 @@ type SpecialInputProps = {
   placeholderTextColor?: string;
   label?: string;
   secureTextEntry?: boolean;
+  value?: string;
+  onChangeText?: (text: string) => void;
 };
 
 export const SpecialInput = ({
   placeholder = "Type here...",
   placeholderTextColor = "yellow",
-  label ,
-  secureTextEntry=false
+  label,
+  secureTextEntry = false,
+  value,
+  onChangeText,
 }: SpecialInputProps) => {
   return (
     <View style={{ marginBottom: 10 }}>
@@ -22,6 +26,8 @@ export const SpecialInput = ({
         placeholderTextColor={placeholderTextColor}
         style={myStyles.input}
         placeholder={placeholder}
+        value={value}
+        onChangeText={onChangeText}
       />
     </View>
   );

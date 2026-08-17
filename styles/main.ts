@@ -12,14 +12,14 @@ export const myStyles = StyleSheet.create({
     padding: 10,
     borderRadius: 15,
     margin: 5,
-    color: "yellow",
+    color: "white",
   },
   card: {
     padding: 10,
     margin: 10,
     borderRadius: 15,
     backgroundColor: "#d604cf",
-    width:"70%"
+    width:"90%"
   },
   text: {
     color: "#ffffff",
