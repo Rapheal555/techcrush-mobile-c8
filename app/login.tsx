@@ -2,13 +2,27 @@ import { SpecialInput } from "@/components/ui/special-input";
 import { myStyles } from "@/styles/main";
 import { Button } from "@react-navigation/elements";
 import { useRouter } from "expo-router";
-import { useState } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
+import { useLogin } from "@/store/loginStore";
+
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [firstName, setFirstName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setLastName] = useState("");
+  // const [password, setPassword] = useState("");
+
+  const {
+    updateFirstName,
+    updateEmail,
+    updateLastName,
+    updatePassword,
+    firstName,
+    lastName,
+    email,
+    password,
+  } = useLogin((state) => state);
 
   const router = useRouter();
   const handleLogin = () => {
@@ -19,25 +33,30 @@ export default function Login() {
     <SafeAreaProvider>
       <SafeAreaView style={myStyles.container}>
         <View style={myStyles.card}>
-          <Text>{firstName}</Text>
-          <Text>{email}</Text>
           <View style={{ display: "flex", flexDirection: "row" }}>
             <SpecialInput
               value={firstName}
-              onChangeText={(text) => setFirstName(text)}
+              onChangeText={(text) => updateFirstName(text)}
               label="First Name"
               placeholder="Enter first name"
             />
-            <SpecialInput label="Last Name" placeholder="Enter last name" />
+            <SpecialInput
+              value={lastName}
+              onChangeText={(text) => updateLastName(text)}
+              label="Last Name"
+              placeholder="Enter last name"
+            />
           </View>
 
           <SpecialInput
             value={email}
-            onChangeText={(text) => setEmail(text)}
+            onChangeText={(text) => updateEmail(text)}
             label="Email"
             placeholder="Enter email"
           />
           <SpecialInput
+            value={password}
+            onChangeText={(text) => updatePassword(text)}
             secureTextEntry={true}
             label="Password"
             placeholder="Enter Password"
