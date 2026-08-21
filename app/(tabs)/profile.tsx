@@ -1,26 +1,23 @@
 import { SpecialInput } from "@/components/ui/special-input";
 import { myStyles } from "@/styles/main";
 import { Text, View } from "react-native";
+import { useLogin } from "@/store/loginStore";
 
 export default function Profile() {
+ 
+  const {
+      firstName,
+      lastName,
+      email,
+      password,
+    } = useLogin((state) => state);
+
   return (
-    
-        <View style={myStyles.card}>
-          <SpecialInput
-            label="Email"
-            placeholder="Enter email"
-            placeholderTextColor="red"
-          />
-          <SpecialInput
-            secureTextEntry={true}
-            label="Password"
-            placeholder="Enter Password"
-          />
-          <Text style={myStyles.text}>This is  Profile</Text>
-          <Text style={myStyles.text}>This is  Profile</Text>
-          <Text style={myStyles.text}>This is  Profile</Text>
-          <Text style={myStyles.text}>This is  Profile</Text>
-        </View>
-     
-  );
+    <View style={myStyles.card}>
+      <Text style={myStyles.text}>First Name : {firstName}</Text>
+      <Text style={myStyles.text}>Last Name: {lastName}</Text>
+      <Text style={myStyles.text}>Email: {email}</Text>
+      <Text style={myStyles.text}>Password: {password}</Text>
+    </View>
+  ); 
 }
