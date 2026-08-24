@@ -6,6 +6,7 @@ import { View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 import { useLogin } from "@/store/loginStore";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Login() {
   // const [email, setEmail] = useState("");
@@ -20,12 +21,30 @@ export default function Login() {
     updatePassword,
     firstName,
     lastName,
-    email,
+    email, 
     password,
-  } = useLogin((state) => state);
+  } = useLogin((state) => state); 
+
+  
+
+  const storeData = async ()=>{
+
+    try{ 
+      await AsyncStorage.setItem("firstName", firstName);
+      await AsyncStorage.setItem("lastName", lastName);
+      await AsyncStorage.setItem("email", email);
+      await AsyncStorage.setItem("password", password);
+    } catch(error){
+      console.log(error)
+    }
+      
+    
+  }
 
   const router = useRouter();
-  const handleLogin = () => {
+
+  const handleLogin = async () => { 
+    await storeData();
     router.replace("/(tabs)/profile");
   };
 
