@@ -4,6 +4,8 @@ import { useRouter } from "expo-router";
 import { useEffect } from "react";
 import { Text, View } from "react-native";
 
+
+
 export default function HomeScreen() {
   const router = useRouter();
 
@@ -25,3 +27,9 @@ export default function HomeScreen() {
     </View>
   );
 }
+
+
+
+
+
+

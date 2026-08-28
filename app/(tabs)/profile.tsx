@@ -1,16 +1,20 @@
-import { SpecialInput } from "@/components/ui/special-input";
+import { useLogin } from "@/store/loginStore";
 import { myStyles } from "@/styles/main";
 import { Text, View } from "react-native";
-import { useLogin } from "@/store/loginStore";
 
 export default function Profile() {
- 
+  
+
   const {
       firstName,
       lastName,
       email,
       password,
     } = useLogin((state) => state);
+
+  
+
+  
 
   return (
     <View style={myStyles.card}>
@@ -19,5 +23,5 @@ export default function Profile() {
       <Text style={myStyles.text}>Email: {email}</Text>
       <Text style={myStyles.text}>Password: {password}</Text>
     </View>
-  ); 
+  );
 }

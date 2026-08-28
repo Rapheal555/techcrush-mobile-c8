@@ -7,6 +7,9 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 import { useLogin } from "@/store/loginStore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect } from "react";
+
+import db from "@/store/db"
 
 export default function Login() {
   // const [email, setEmail] = useState("");
@@ -25,11 +28,27 @@ export default function Login() {
     password,
   } = useLogin((state) => state); 
 
+  useEffect(() => {
+    const loadData = async () => {
+      const storedFirstName = await AsyncStorage.getItem("firstName");
+      const storedLastName = await AsyncStorage.getItem("lastName");
+      const storedEmail = await AsyncStorage.getItem("email");
+      const storedPassword = await AsyncStorage.getItem("password");
+      updateFirstName(storedFirstName || "");
+      updateLastName(storedLastName || "");
+      updateEmail(storedEmail || "");
+      updatePassword(storedPassword || "");
+    };
+
+    loadData();
+  }, []); 
+
   
 
   const storeData = async ()=>{
 
     try{ 
+     
       await AsyncStorage.setItem("firstName", firstName);
       await AsyncStorage.setItem("lastName", lastName);
       await AsyncStorage.setItem("email", email);
@@ -42,9 +61,20 @@ export default function Login() {
   }
 
   const router = useRouter();
-
+ 
   const handleLogin = async () => { 
-    await storeData();
+    await storeData();   
+   
+  
+  //  await db.runAsync(
+  //    "INSERT INTO users (firstName, lastName, email, password) VALUES (?, ?, ?, ?)",
+  //    firstName,
+  //    lastName,
+  //    email,
+  //    password,
+  //  );
+
+
     router.replace("/(tabs)/profile");
   };
 
