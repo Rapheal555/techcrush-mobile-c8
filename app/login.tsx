@@ -8,8 +8,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { useLogin } from "@/store/loginStore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect } from "react";
-
-import db from "@/store/db"
+import { useSQLiteContext } from "expo-sqlite";
 
 export default function Login() {
   // const [email, setEmail] = useState("");
@@ -24,9 +23,9 @@ export default function Login() {
     updatePassword,
     firstName,
     lastName,
-    email, 
+    email,
     password,
-  } = useLogin((state) => state); 
+  } = useLogin((state) => state);
 
   useEffect(() => {
     const loadData = async () => {
@@ -41,39 +40,33 @@ export default function Login() {
     };
 
     loadData();
-  }, []); 
+  }, []);
 
-  
+  const db = useSQLiteContext();
 
-  const storeData = async ()=>{
-
-    try{ 
-     
+  const storeData = async () => {
+    try {
       await AsyncStorage.setItem("firstName", firstName);
       await AsyncStorage.setItem("lastName", lastName);
       await AsyncStorage.setItem("email", email);
       await AsyncStorage.setItem("password", password);
-    } catch(error){
-      console.log(error)
+    } catch (error) {
+      console.log(error);
     }
-      
-    
-  }
+  };
 
   const router = useRouter();
- 
-  const handleLogin = async () => { 
-    await storeData();   
-   
-  
-  //  await db.runAsync(
-  //    "INSERT INTO users (firstName, lastName, email, password) VALUES (?, ?, ?, ?)",
-  //    firstName,
-  //    lastName,
-  //    email,
-  //    password,
-  //  );
 
+  const handleLogin = async () => {
+    await storeData();
+
+     await db.runAsync(
+       "INSERT INTO users (firstName, lastName, email, password) VALUES (?, ?, ?, ?)",
+       firstName,
+       lastName,
+       email,
+       password,
+     );
 
     router.replace("/(tabs)/profile");
   };
