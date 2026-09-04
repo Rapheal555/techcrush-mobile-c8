@@ -9,6 +9,7 @@ import { useLogin } from "@/store/loginStore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect } from "react";
 import { useSQLiteContext } from "expo-sqlite";
+import {postMethod} from '@/lib/api-client'
 
 export default function Login() {
   // const [email, setEmail] = useState("");
@@ -67,6 +68,11 @@ export default function Login() {
        email,
        password,
      );
+
+     await postMethod("/auth/login", {
+       username: firstName,
+       password: password,
+     });
 
     router.replace("/(tabs)/profile");
   };

@@ -24,15 +24,6 @@ export default function Profile() {
     setup();
   }, []);
 
-  // const {
-  //     firstName,
-  //     lastName,
-  //     email,
-  //     password,
-  //   } = useLogin((state) => state);
-
-  
-
   
 
   return (
