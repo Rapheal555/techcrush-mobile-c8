@@ -10,6 +10,7 @@ interface LoginState {
   updateLastName: (value:string) => void;
   updateEmail: (value:string) => void;
   updatePassword: (value:string) => void;
+  setIsLoading:(value:boolean)=> void;
 }
 
 

@@ -9,7 +9,8 @@ import { useLogin } from "@/store/loginStore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect } from "react";
 import { useSQLiteContext } from "expo-sqlite";
-import {postMethod} from '@/lib/api-client'
+import { postMethod } from "@/lib/api-client";
+import * as SecureStore from "expo-secure-store";
 
 export default function Login() {
   // const [email, setEmail] = useState("");
@@ -26,7 +27,11 @@ export default function Login() {
     lastName,
     email,
     password,
+    isLoading,
+    
   } = useLogin((state) => state);
+
+  // const api = ApiClient()
 
   useEffect(() => {
     const loadData = async () => {
@@ -69,12 +74,14 @@ export default function Login() {
        password,
      );
 
-     await postMethod("/auth/login", {
+    const userData = await postMethod("/auth/login", {
        username: firstName,
        password: password,
      });
 
-    router.replace("/(tabs)/profile");
+     await SecureStore.setItemAsync("apiToken", userData.accessToken);
+
+    // router.replace("/(tabs)/profile");
   };
 
   return (
@@ -114,7 +121,7 @@ export default function Login() {
             color="#d604cf"
             style={myStyles.button}
           >
-            Login
+            {isLoading ? "Loading..." : "Login"}
           </Button>
         </View>
       </SafeAreaView>
