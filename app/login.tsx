@@ -74,14 +74,14 @@ export default function Login() {
        password,
      );
 
-    const userData = await postMethod("/auth/login", {
-       username: firstName,
-       password: password,
-     });
+    // const userData = await postMethod("/auth/login", {
+    //    username: firstName,
+    //    password: password,
+    //  });
 
-     await SecureStore.setItemAsync("apiToken", userData.accessToken);
+    //  await SecureStore.setItemAsync("apiToken", userData.accessToken);
 
-    // router.replace("/(tabs)/profile");
+    router.replace("/(tabs)/profile");
   };
 
   return (
